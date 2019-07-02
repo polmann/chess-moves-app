@@ -1,0 +1,13 @@
+{
+	"parser": "babel-eslint",
+  "extends": ["react-app", "airbnb", "prettier"],
+  "rules": {
+  	"import/extensions": "off",
+  	"import/no-unresolved": "off",
+    "react/prop-types": "error",
+    "react/require-default-props": "error",
+    "arrow-parens": ["error", "as-needed", { "requireForBlockBody": false }],
+    "react/jsx-filename-extension": 0,
+    "react/forbid-prop-types": 0
+  }
+}
