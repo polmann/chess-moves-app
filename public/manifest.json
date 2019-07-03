@@ -1,6 +1,6 @@
 {
-  "short_name": "Chess Moves",
-  "name": "Valid Chess Moves",
+  "short_name": "Knight Moves",
+  "name": "Knight Valid Moves",
   "icons": [
     {
       "src": "favicon.ico",

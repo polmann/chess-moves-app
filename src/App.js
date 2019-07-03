@@ -25,7 +25,7 @@ export default function App() {
   return (
     <div className="App">
       <Typography className={classes.header} variant="h2">
-        Valid Chess Moves
+        Knight Valid Moves
       </Typography>
       <Board />
       <Button variant="contained" size="large" color="primary" className={classes.button}>
