@@ -37,13 +37,16 @@ function renderHeader(className, location) {
 }
 
 function renderRow(className, number) {
+  const colorSelector =
+    number % 2 ? i => (i % 2 ? 'dark' : 'light') : i => (i % 2 ? 'light' : 'dark');
+
   return [
     <GridListTile key={`${number}_left_number`} className={className}>
       <Typography variant="h6">{number}</Typography>
     </GridListTile>,
-    boardColumns.map(column => {
+    boardColumns.map((column, i) => {
       const position = `${column}${number}`;
-      return <Tile key={position} position={position} />;
+      return <Tile key={position} position={position} color={colorSelector(i)} />;
     }),
     <GridListTile key={`${number}_right_number`} className={className}>
       <Typography variant="h6">{number}</Typography>

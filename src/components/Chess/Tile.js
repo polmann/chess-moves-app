@@ -10,7 +10,6 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     width: '10%',
     paddingTop: '10%',
-    backgroundColor: colors.light,
     border: '1px solid',
     '&:hover': {
       opacity: '0.5',
@@ -26,7 +25,14 @@ const useStyles = makeStyles(theme => ({
 
 function Tile({ position, color }) {
   const classes = useStyles();
-  return <GridListTile className={classes.root} position={position} />;
+
+  return (
+    <GridListTile
+      className={classes.root}
+      position={position}
+      style={{ backgroundColor: colors[color] }}
+    />
+  );
 }
 
 Tile.propTypes = {
