@@ -37,8 +37,10 @@ function renderHeader(className, location) {
 }
 
 function renderRow(className, number) {
-  const colorSelector =
-    number % 2 ? i => (i % 2 ? 'dark' : 'light') : i => (i % 2 ? 'light' : 'dark');
+  let colorSelector = i => (i % 2 ? 'light' : 'dark');
+  if (number % 2) {
+    colorSelector = i => (i % 2 ? 'dark' : 'light');
+  }
 
   return [
     <GridListTile key={`${number}_left_number`} className={className}>
