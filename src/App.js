@@ -1,26 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { Board } from './components/Chess';
+import Button from '@material-ui/core/Button';
+import NavigationIcon from '@material-ui/icons/Navigation';
 
-function App({ classes }) {
+const useStyles = makeStyles(theme => ({
+  header: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(2),
+  },
+  button: {
+    margin: theme.spacing(1),
+    marginLeft: 'calc(50% - 70px)',
+  },
+  buttonIcon: {
+    marginRight: theme.spacing(1),
+  },
+}));
+
+export default function App() {
+  const classes = useStyles();
+
   return (
     <div className="App">
       <Typography className={classes.header} variant="h2">
         Valid Chess Moves
       </Typography>
+      <Board />
+      <Button variant="contained" size="large" color="primary" className={classes.button}>
+        <NavigationIcon className={classes.buttonIcon} />
+        Search
+      </Button>
     </div>
   );
 }
-
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-const styles = {
-  header: {
-    textAlign: 'center',
-  },
-};
-
-export default withStyles(styles)(App);
