@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import chess from './chess';
 
@@ -7,6 +7,6 @@ export default function() {
     combineReducers({
       chess,
     }),
-    compose(applyMiddleware(thunk)),
+    applyMiddleware(thunk),
   );
 }
