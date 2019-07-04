@@ -87,7 +87,6 @@ export function getPossibleMoves() {
     chessMovesAPI
       .getPossibleMoves(positionSelected)
       .then(moves => {
-        console.log('moves', moves);
         dispatch(updatePossibleMoves(moves));
       })
       .catch(() => {
