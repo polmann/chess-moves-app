@@ -13,7 +13,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function renderHeader(location) {
+const colorSelector = (x, y) => (x % 2 ? (y % 2 ? 'dark' : 'light') : y % 2 ? 'light' : 'dark');
+
+function renderHeader() {
   return [
     <HeaderTile key="left_empty" />,
     boardColumns.map(column => <HeaderTile title={column} />),
@@ -21,18 +23,13 @@ function renderHeader(location) {
   ];
 }
 
-function renderRow(number) {
-  let colorSelector = i => (i % 2 ? 'light' : 'dark');
-  if (number % 2) {
-    colorSelector = i => (i % 2 ? 'dark' : 'light');
-  }
-
+function renderRow(x) {
   return [
-    <HeaderTile title={`${number}`} />,
-    boardColumns.map((column, i) => (
-      <Tile position={`${column}${number}`} color={colorSelector(i)} />
+    <HeaderTile title={`${x}`} />,
+    boardColumns.map((column, y) => (
+      <Tile position={`${column}${x}`} color={colorSelector(x, y)} />
     )),
-    <HeaderTile title={`${number}`} />,
+    <HeaderTile title={`${x}`} />,
   ];
 }
 
@@ -41,9 +38,9 @@ export default function Board() {
 
   return (
     <GridList className={classes.board} cols={10} cellHeight="auto">
-      {renderHeader('top')}
+      {renderHeader()}
       {boardColumns.map((column, i) => renderRow(i + 1))}
-      {renderHeader('top')}
+      {renderHeader()}
     </GridList>
   );
 }
