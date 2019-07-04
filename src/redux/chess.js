@@ -64,7 +64,6 @@ export function selectPosition(positionSelected) {
 }
 
 export function fetchingPossibleMoves() {
-  console.log('fetchingPossibleMoves');
   return { type: FETCHING_POSSIBLE_MOVES };
 }
 
@@ -84,14 +83,18 @@ export function getPossibleMoves() {
       chess: { positionSelected },
     } = getState();
 
-    chessMovesAPI
-      .getPossibleMoves(positionSelected)
-      .then(moves => {
-        dispatch(updatePossibleMoves(moves));
-      })
-      .catch(() => {
-        dispatch(updatePossibleMoves());
-      });
+    if (positionSelected) {
+      chessMovesAPI
+        .getPossibleMoves(positionSelected)
+        .then(moves => {
+          dispatch(updatePossibleMoves(moves));
+        })
+        .catch(() => {
+          dispatch(updatePossibleMoves());
+        });
+    } else {
+      dispatch(updatePossibleMoves());
+    }
   };
 }
 
