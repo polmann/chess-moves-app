@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { mapStateToProps, mapDispatchToProps } from './redux/chess';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Board from './components/Chess';
 import Button from '@material-ui/core/Button';
-import NavigationIcon from '@material-ui/icons/Navigation';
+import SearchIcon from '@material-ui/icons/Search';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -17,10 +20,16 @@ const useStyles = makeStyles(theme => ({
   buttonIcon: {
     marginRight: theme.spacing(1),
   },
+  loading: {
+    margin: theme.spacing(1),
+    marginLeft: '50%',
+  },
 }));
 
-export default function App() {
+function App({ possibleMoves, getPossibleMoves }) {
   const classes = useStyles();
+
+  const { loading } = possibleMoves;
 
   return (
     <div className="App">
@@ -28,10 +37,24 @@ export default function App() {
         Knight Valid Moves
       </Typography>
       <Board />
-      <Button variant="contained" size="large" color="primary" className={classes.button}>
-        <NavigationIcon className={classes.buttonIcon} />
-        Search
-      </Button>
+      {!loading && (
+        <Button
+          variant="contained"
+          size="large"
+          color="primary"
+          className={classes.button}
+          onClick={getPossibleMoves}
+        >
+          <SearchIcon className={classes.buttonIcon} />
+          Show Moves
+        </Button>
+      )}
+      {loading && <CircularProgress className={classes.loading} />}
     </div>
   );
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

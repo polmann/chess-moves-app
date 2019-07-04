@@ -1,4 +1,5 @@
 import { bindActionCreators } from 'redux';
+import * as chessMovesAPI from '../lib/chessMovesAPI';
 
 // Actions
 const SELECT_POSITION = 'chess/SELECT_POSITION';
@@ -43,7 +44,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         possibleMoves: {
           loading: false,
-          data: moves,
+          data: moves || [],
         },
       };
 
@@ -63,6 +64,7 @@ export function selectPosition(positionSelected) {
 }
 
 export function fetchingPossibleMoves() {
+  console.log('fetchingPossibleMoves');
   return { type: FETCHING_POSSIBLE_MOVES };
 }
 
@@ -75,10 +77,23 @@ export function updatePossibleMoves(moves) {
   };
 }
 
-export async function getPossibleMoves(messageId) {
-  fetchingPossibleMoves();
-  const moves = {}; // TODO
-  return updatePossibleMoves(moves);
+export function getPossibleMoves() {
+  return (dispatch, getState) => {
+    dispatch(fetchingPossibleMoves());
+    const {
+      chess: { positionSelected },
+    } = getState();
+
+    chessMovesAPI
+      .getPossibleMoves(positionSelected)
+      .then(moves => {
+        console.log('moves', moves);
+        dispatch(updatePossibleMoves(moves));
+      })
+      .catch(() => {
+        dispatch(updatePossibleMoves());
+      });
+  };
 }
 
 // Selectors

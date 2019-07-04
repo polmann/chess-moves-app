@@ -40,7 +40,8 @@ function Board({ positionSelected, possibleMoves, selectPosition }) {
           let color = colorSelector(i + 1, y);
           if (data.includes(position)) {
             color = 'highlight';
-          } else if (position === positionSelected) {
+          }
+          if (position === positionSelected) {
             color = 'selected';
           }
 
