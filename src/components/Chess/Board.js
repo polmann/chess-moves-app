@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { mapStateToProps, mapDispatchToProps } from '../../redux/chess';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import HeaderTile from './HeaderTile';
@@ -64,7 +62,4 @@ Board.propTypes = {
   selectPosition: PropTypes.func,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Board);
+export default Board;
