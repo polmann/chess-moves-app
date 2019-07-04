@@ -23,14 +23,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Tile({ position, color }) {
+function Tile({ position, color, onClick }) {
   const classes = useStyles();
 
   return (
     <GridListTile
       className={classes.root}
-      position={position}
       style={{ backgroundColor: colors[color] }}
+      onClick={() => onClick(position)}
     />
   );
 }
@@ -38,6 +38,7 @@ function Tile({ position, color }) {
 Tile.propTypes = {
   position: PropTypes.string.isRequired,
   color: PropTypes.oneOf(['light', 'dark']),
+  onClick: PropTypes.func,
 };
 
 export default Tile;
