@@ -23,23 +23,19 @@ function renderHeader() {
   ];
 }
 
-function renderRow(x) {
-  return [
-    <HeaderTile title={`${x}`} />,
-    boardColumns.map((column, y) => (
-      <Tile position={`${column}${x}`} color={colorSelector(x, y)} />
-    )),
-    <HeaderTile title={`${x}`} />,
-  ];
-}
-
-export default function Board() {
+export default function Board({ selectedPosition, possibleMoves, selectPosition }) {
   const classes = useStyles();
 
   return (
     <GridList className={classes.board} cols={10} cellHeight="auto">
       {renderHeader()}
-      {boardColumns.map((column, i) => renderRow(i + 1))}
+      {boardColumns.map((column, i) => [
+        <HeaderTile title={`${i + 1}`} />,
+        boardColumns.map((column, y) => (
+          <Tile position={`${column}${i + 1}`} color={colorSelector(i + 1, y)} />
+        )),
+        <HeaderTile title={`${i + 1}`} />,
+      ])}
       {renderHeader()}
     </GridList>
   );
