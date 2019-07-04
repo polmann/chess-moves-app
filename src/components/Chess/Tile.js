@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import GridListTile from '@material-ui/core/GridListTile';
 
-const colors = { light: '#FCCDA0', dark: '#D38746' };
+const colors = {
+  light: '#FCCDA0',
+  dark: '#D38746',
+  highlight: 'rgba(255, 213, 15, 0.7)',
+  selected: '#000000',
+};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,12 +19,6 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       opacity: '0.5',
     },
-  },
-  fab: {
-    margin: theme.spacing(1),
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
   },
 }));
 
@@ -37,7 +36,7 @@ function Tile({ position, color, onClick }) {
 
 Tile.propTypes = {
   position: PropTypes.string.isRequired,
-  color: PropTypes.oneOf(['light', 'dark']),
+  color: PropTypes.oneOf(['light', 'dark', 'highlight', 'selected']),
   onClick: PropTypes.func,
 };
 
