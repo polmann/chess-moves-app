@@ -6,8 +6,6 @@
 
 This is an application that highlights the possible moves of a chess piece in exactly two turns. Currently there's only support for the knight piece, so anyone is welcome to [contribute](/CONTRIBUTING.md).
 
-This is an api that returns the valid moves of a chess piece given its position and the depth of play (number of steps). Currently there's only support for the knight piece, anyone is welcome to [contribute](/CONTRIBUTING.md).
-
 ## Installing
 
 For instructions on how to install the app, please read the Getting Started section of the [Contributors Guide](/CONTRIBUTING.md).
