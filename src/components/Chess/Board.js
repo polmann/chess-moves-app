@@ -6,6 +6,7 @@ import HeaderTile from './HeaderTile';
 import Tile from './Tile';
 
 const boardColumns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+const boardRows = 8;
 
 const useStyles = makeStyles(theme => ({
   board: {
@@ -33,11 +34,11 @@ function Board({ positionSelected, possibleMoves, selectPosition }) {
     <GridList className={classes.board} cols={10} cellHeight="auto">
       {renderHeader()}
       {boardColumns.map((column, i) => [
-        <HeaderTile title={`${i + 1}`} />,
+        <HeaderTile title={`${boardRows - i}`} />,
         boardColumns.map((column, y) => {
-          const position = `${column}${i + 1}`;
+          const position = `${column}${boardRows - i}`;
 
-          let color = colorSelector(i + 1, y);
+          let color = colorSelector(boardRows - i, y);
           if (data.includes(position)) {
             color = 'highlight';
           }
@@ -47,7 +48,7 @@ function Board({ positionSelected, possibleMoves, selectPosition }) {
 
           return <Tile position={position} color={color} onClick={selectPosition} />;
         }),
-        <HeaderTile title={`${i + 1}`} />,
+        <HeaderTile title={`${boardRows - i}`} />,
       ])}
       {renderHeader()}
     </GridList>
